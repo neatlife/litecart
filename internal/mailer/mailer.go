@@ -19,6 +19,9 @@ var EncryptionTypes = map[string]mailer.Encryption{
 
 // SendMail is ...
 func SendMail(smtp *models.Mail, mail *models.MessageMail) error {
+	if len(smtp.Host) == 0 {
+		return nil
+	}
 	server := mailer.NewSMTPClient()
 	server.Host = smtp.SMTP.Host
 	server.Port = smtp.SMTP.Port
